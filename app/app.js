@@ -59,9 +59,18 @@ ExpressApp.post('/webhook', (req, res) => {
         return res.status(403).send('Invalid signature provided');
     } 
 
-    /* Signature was valid, continue processing the request... */
+    /* Signature was valid, convert the raw buffer into JSON */
 
-    console.log(json.stringify(RequestBody.data))
+    let RequestData;
+
+    try {
+        RequestData = JSON.parse(RequestBody.toString('utf-8'));
+    } catch (error) {
+        console.error('Error parsing the provided JSON buffer: ', error);
+        return res.status(400).send('Error parsing the provided JSON buffer');
+    }
+
+    /* TODO: write the following part :) */
 
 
 });
