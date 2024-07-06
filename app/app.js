@@ -11,14 +11,15 @@
 
 const express = require('express');
 const crypto = require('crypto');
-const { env } = require('process');
+
+require('dotenv').config();
 
 /**********************************************************************
  * @description Initialization of Express.js webserver.
  */
 
 const ExpressApp = express();
-const WebhookSecret = env.WEBHOOK_SECRET;
+const WebhookSecret = process.env.WEBHOOK_SECRET;
 
 // Middleware to parse JSON body
 ExpressApp.use(express.raw({ type: '*/*' }));
